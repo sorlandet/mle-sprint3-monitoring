@@ -6,10 +6,10 @@ import time
 REQUEST_TIME = Summary(
     'request_processing_seconds',
     'Time spent processing request',
-    ['method', 'endpoint'])
+)
 
 # Используем функцию декоратор
-@REQUEST_TIME.labels('GET', '/example').time()
+@REQUEST_TIME.time()
 def process_request(t):
     """A dummy function that takes some time."""
     time.sleep(t)
