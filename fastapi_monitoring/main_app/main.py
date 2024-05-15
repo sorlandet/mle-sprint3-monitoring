@@ -15,5 +15,4 @@ instrumentator.instrument(app).expose(app)
 def predict(x: int, y: int):
     np.random.seed(x)
     prediction = x+y + np.random.normal(0,1)
-    main_app_predictions.observe(prediction)
     return {'prediction': prediction}
