@@ -7,7 +7,7 @@ from prometheus_client import Histogram
 # создание экземпляра FastAPI приложения
 app = FastAPI()
 
-np.random.seed(1702)
+
 
 # инициализируем и запускаем экпортёр метрик
 instrumentator = Instrumentator()
@@ -25,6 +25,7 @@ main_app_predictions = Histogram(
 # предсказания
 @app.get("/predict")
 def predict(x: int, y: int):
+    np.random.seed(int(abs(x)))
     prediction = x+y + np.random.normal(0,1)
     main_app_predictions.observe(prediction)
     return {'prediction': prediction}
