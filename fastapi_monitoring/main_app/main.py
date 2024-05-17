@@ -13,6 +13,6 @@ instrumentator.instrument(app).expose(app)
 # предсказания
 @app.get("/predict")
 def predict(x: int, y: int):
-    np.random.seed(x)
+    np.random.seed(int(abs(x)))
     prediction = x+y + np.random.normal(0,1)
     return {'prediction': prediction}
