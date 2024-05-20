@@ -22,10 +22,14 @@ main_app_predictions = Histogram(
     buckets=(1, 2, 4, 5, 10)
 )
 
+main_app_counter_pos = Counter("main_app_counter_pos", "Count of positive predictions")
+
 # предсказания
 @app.get("/predict")
 def predict(x: int, y: int):
     np.random.seed(int(abs(x)))
     prediction = x+y + np.random.normal(0,1)
     main_app_predictions.observe(prediction)
+    if prediction > 0:
+        main_app_counter_pos.inc()
     return {'prediction': prediction}
