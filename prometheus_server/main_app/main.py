@@ -3,6 +3,7 @@ from fastapi.responses import PlainTextResponse
 from prometheus_fastapi_instrumentator import Instrumentator
 import numpy as np
 from prometheus_client import Histogram
+from prometheus_client import Counter
 
 # создание экземпляра FastAPI приложения
 app = FastAPI()
